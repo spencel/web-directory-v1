@@ -1,28 +1,37 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import Todo from './Todo'
+import { connect } from 'react-redux';
+import { fetchTodos } from '../actions/todos'
 
-const TodoList = ({ todos, toggleTodo }) => (
-  <ul>
-    {todos.map( todo =>
-      <Todo
-        key={todo.id}
-        {...todo}
-        onClick={() => toggleTodo( todo.id )}
-      />
-    )}
-  </ul>
-)
+class TodoList extends React.Component {
+  componentDidMount() {
+    console.log( 'TodoList componentDidMount' )
+    this.props.dispatch( fetchTodos())
+  }
 
-/*TodoList.propTypes = {
-  todos: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      completed: PropTypes.bool.isRequired,
-      text: PropTypes.string.isRequired
-    }).isRequired
-  ).isRequired,
-  toggleTodo: PropTypes.func.isRequired
-}*/
+  render() {
+    const { error, loading, todos } = this.props
+    if ( error ) {
+      return <div>{error.message}</div>
+    }
+    if ( loading ) {
+      return <div>Loading...</div>
+    }
+    return (
+      <ul>
+        {todos.map(( todo, i ) => {
+          return <li key={i}>{todo.text}</li>
+        })}
+      </ul>
+    )
+  }
+}
 
-export default TodoList
+const mapStateToProps = state => {
+  return {
+    todos: state.todos.items,
+    loading: state.todos.loading,
+    error: state.todos.error
+  }
+}
+
+export default connect( mapStateToProps )( TodoList )

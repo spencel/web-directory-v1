@@ -46,12 +46,14 @@ const categoriesCollectionName = 'categories';
 
 // Server
 
-app.get( '/api/getTodos', ( request, response ) => {
+app.get( '/api/fetchTodos', ( request, response ) => {
+  console.log( '/api/fetchTodos' )
   mongo.db
     .collection( 'todos' )
     .find({}, null )
     .toArray(( error, documents ) => {
-      response.send( documents );
+      console.log( documents )
+      response.send( documents )
     });
 });
 

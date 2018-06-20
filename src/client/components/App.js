@@ -1,12 +1,21 @@
 import React from 'react'
-import AddTodo from '../containers/AddTodo'
-import VisibleTodoList from '../containers/VisibleTodoList'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
+import TodoList from './TodoList'
 
-const App = () => (
-  <div>
-    <AddTodo />
-    <VisibleTodoList />
-  </div>
-)
+
+class App extends React.Component {
+
+  render() {
+    return (
+      <div>
+        <TodoList />
+      </div>
+    )
+  }
+}
 
 export default App
