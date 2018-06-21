@@ -2,7 +2,6 @@
 /* jshint ignore: start */
 
 import express from 'express';
-import os from 'os';
 import mongodb from 'mongodb';
 import bodyParser from 'body-parser';
 import normalizePort from 'normalize-port';
