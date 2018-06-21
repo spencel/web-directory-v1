@@ -1,5 +1,4 @@
 import React from 'react'
-import { connect } from 'react-redux'; // react-redux process
 
 class Todo extends React.Component {
   constructor( props ) {
@@ -12,11 +11,16 @@ class Todo extends React.Component {
     console.log( 'Todo componentDidMount' )
   }
 
+  deleteTodo = () => {
+    
+  }
+
   render() {
     console.log( `Todo.render(): text: ${this.props.text}` )
     return (
       <li className='Todo'>
         {this.props.text}
+        <span onClick={this.deleteTodo}>x</span>
       </li>
     )
   }
