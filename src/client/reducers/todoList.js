@@ -1,8 +1,8 @@
 import {
-  FETCH_TODOS_BEGIN,
-  FETCH_TODOS_SUCCESS,
-  FETCH_TODOS_FAIL
-} from '../actions/todos'
+  FETCH_TODOLIST_BEGIN,
+  FETCH_TODOLIST_SUCCESS,
+  FETCH_TODOLIST_FAIL
+} from '../actions/todoList'
 
 const initialState = {
   items: [],
@@ -10,10 +10,10 @@ const initialState = {
   error: null
 }
 
-export default function todos( state = initialState, action ) {
+export default function todoList( state = initialState, action ) {
   switch( action.type ) {
-    case FETCH_TODOS_BEGIN:
-      console.log( 'FETCH_TODOS_BEGIN' )
+    case FETCH_TODOLIST_BEGIN:
+      console.log( 'FETCH_TODOLIST_BEGIN' )
       // Mark the state as "loading" so we can show a spinner or something
       // Also, reset any errors. We're starting fresh.
       return {
@@ -22,18 +22,18 @@ export default function todos( state = initialState, action ) {
         error: null
       }
 
-    case FETCH_TODOS_SUCCESS:
-      console.log( 'FETCH_TODOS_SUCCESS' )
+    case FETCH_TODOLIST_SUCCESS:
+      console.log( 'FETCH_TODOLIST_SUCCESS' )
       // All done: set loading "false".
       // Also, replace the items with the ones from the server
       return {
         ...state,
         loading: false,
-        items: action.todos
+        items: action.todoList
       }
 
-    case FETCH_TODOS_FAIL:
-    console.log( 'FETCH_TODOS_FAIL' )
+    case FETCH_TODOLIST_FAIL:
+    console.log( 'FETCH_TODOLIST_FAIL' )
       // The request failed, but it did stop, so set loading to "false".
       // Save the error, and we can display it somewhere
       // Since it failed, we don't have items to display anymore, so set it empty.

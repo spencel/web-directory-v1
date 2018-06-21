@@ -1,18 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'; // react-redux process
-import { fetchTodoList } from '../actions/todoList' // react-redux process
-import Todo from './Todo'
+//import { fetchTodos } from '../actions/todos' // react-redux process
 
 class TodoList extends React.Component {
   componentDidMount() {
     console.log( 'TodoList componentDidMount' )
-    this.props.dispatch( fetchTodoList()) // react-redux process
+    this.props.dispatch( fetchTodos()) // react-redux process
   }
 
   render() {
-    const { error, loading, todoList } = this.props
-    console.log( `TodoList.render(): todoList:` )
-    console.log( todoList )
+    const { error, loading, todos } = this.props
     if ( error ) {
       return <div>{error.message}</div>
     }
@@ -20,9 +17,9 @@ class TodoList extends React.Component {
       return <div>Loading...</div>
     }
     return (
-      <ul className='TodoList'>
-        {todoList.map(( todo, i ) => {
-          return <Todo key={i} text={todo.text} />
+      <ul>
+        {todos.map(( todo, i ) => {
+          return <li key={i}>{todo.text}</li>
         })}
       </ul>
     )
@@ -32,9 +29,9 @@ class TodoList extends React.Component {
 // Useful for react-redux
 const mapStateToProps = state => {
   return {
-    todoList: state.todoList.items,
-    loading: state.todoList.loading,
-    error: state.todoList.error
+    todos: state.todos.items,
+    loading: state.todos.loading,
+    error: state.todos.error
   }
 }
 

@@ -23,6 +23,7 @@
     "cross-fetch": "^2.2.1",
     "express": "^4.16.3",
     "mongodb": "^3.0.10",
+    "mongoose": "^5.1.6",
     "mysql": "^2.15.0",
     "normalize-port": "^1.0.0",
     "react": "^16.3.1",

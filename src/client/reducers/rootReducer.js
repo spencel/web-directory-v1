@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux'
-import todos from './todos'
+import todoList from './todoList'
+import addTodo from './addTodo'
 
 const rootReducer = combineReducers({
-  todos
+  todoList,
+  addTodo
 })
 
 export default rootReducer

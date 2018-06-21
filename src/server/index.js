@@ -1,10 +1,13 @@
 /* jshint esversion: 6 */
 /* jshint ignore: start */
 
-import express from 'express';
-import mongodb from 'mongodb';
-import bodyParser from 'body-parser';
-import normalizePort from 'normalize-port';
+import express from 'express' // web server framework
+import mongodb from 'mongodb' // mongodb database driver
+import mongoose from 'mongoose' // mongodb object data modeler
+import mongooseModels from './mongooseModels'
+import bodyParser from 'body-parser'
+import normalizePort from 'normalize-port'
+//knex and mysql
 
 const app = express();
 
@@ -17,64 +20,39 @@ const jsonParser = bodyParser.json();
 
 // Database
 
-var mongoDbUserName = 'slank';
-var mongoDbUserPassword = 'yoohunfer1';
-var mongoDbName = 'web-directory';
-var mongoDbUrl = `mongodb://${mongoDbUserName}:${mongoDbUserPassword}@ds123728.mlab.com:23728/${mongoDbName}`;
-console.log( mongoDbUrl );
-var mongo = undefined;
-mongodb.MongoClient.connect(
-  mongoDbUrl,
-  ( error, client ) => {
-    if ( error ) {
-      console.error( error );
-      return;
-    }
-    console.log( 'connection successful' );
-    mongo = {
-      client: client,
-      db: client.db( mongoDbName )
-    };
-  }
-);
-
-// Database Collection Names
-const categoriesCollectionName = 'categories';
-
+var mongodbUserName = 'slank';
+var mongodbUserPassword = 'yoohunfer1';
+var mongodbName = 'web-directory';
+var mongodbUrl = `mongodb://${mongodbUserName}:${mongodbUserPassword}@ds123728.mlab.com:23728/${mongodbName}`;
+mongoose.connect( mongodbUrl, ( error ) => {
+  if ( error ) console.error( error )
+  console.log( 'connection to mongodb via mongoose successful' )
+})
+mongoose.connection.on( 'error', console.error.bind( console, 'connection error:' ))
+mongoose.connection.once( 'open', () => {
+  console.log( 'open connection to mongodb via mongoose successful' )
+})
 // End Database
 
-// Server
 
-app.get( '/api/fetchTodos', ( request, response ) => {
-  console.log( '/api/fetchTodos' )
-  mongo.db
-    .collection( 'todos' )
-    .find({}, null )
-    .toArray(( error, documents ) => {
-      console.log( documents )
-      response.send( documents )
-    });
-});
+// Routers
 
-app.post( '/api/addTodo', jsonParser, ( request, response ) => {
-  mongo.db
-    .collection( 'todos' )
-    .insertOne({ text: request.body.text }, null, ( error, result ) => {
-      console.log( result.ops[0] );
-      response.send( JSON.stringify( result.ops[0] ));
-    });
-});
-
-// app.post( '/api/deleteCategory', jsonParser, ( request, response ) => {
-//   console.log( request.body.categoryId );
-//   mongo.db
-//   .collection( categoriesCollectionName )
-//   .deleteOne({ '_id': new mongodb.ObjectID( request.body.categoryId ) }, ( error, result ) => {
-//     if ( error ) console.error( error );
-//     console.log( result.result );
-//     response.send( JSON.stringify({ isDeleted: true }));
-//   });
-// });
+app.get( '/api/fetchTodoList', ( request, response ) => {
+  console.log( '/api/fetchTodoList' )
+  mongooseModels.Todo.find(( error, documents ) => {
+    if ( error ) return console.error( error )
+    response.send( documents )
+  })
+})
+app.post( '/api/fetchAddTodo', jsonParser, ( request, response ) => {
+  console.log( '/api/fetchAddTodo' )
+  console.log( request.body )
+  mongooseModels.Todo.save(( error, documents ) => {
+    if ( error ) return console.error( error )
+    response.send( documents )
+  })
+})
+// End Routers
 
 // get port from environment and store in Express.
 var port = normalizePort( process.env.PORT || '8080' ); // process.env.PORT lets the port be set by Heroku
