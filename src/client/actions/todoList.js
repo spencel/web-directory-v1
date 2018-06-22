@@ -16,6 +16,7 @@ export const fetchTodoListFail = error => ({
 })
 
 export function fetchTodoList() {
+  console.log( 'fetchTodoList' )
   return dispatch => {
     dispatch( fetchTodoListBegin())
     return fetch( '/api/fetchTodoList' )
@@ -25,6 +26,7 @@ export function fetchTodoList() {
         return response.json()
       })
       .then( json => {
+        console.log( 'json:' )
         console.log( json )
         dispatch( fetchTodoListSuccess( json ))
         return json

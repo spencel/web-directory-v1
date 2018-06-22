@@ -1,29 +1,14 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-class Todo extends React.Component {
-  constructor( props ) {
-    super( props );
-    console.log( 'Todo.constructor()' )
-    console.log( props )
-  }
+const Todo = ({ text }) => (
+  <li className='Todo'>
+    {text}
+  </li>
+)
 
-  componentDidMount() {
-    console.log( 'Todo componentDidMount' )
-  }
-
-  deleteTodo = () => {
-    
-  }
-
-  render() {
-    console.log( `Todo.render(): text: ${this.props.text}` )
-    return (
-      <li className='Todo'>
-        {this.props.text}
-        <span onClick={this.deleteTodo}>x</span>
-      </li>
-    )
-  }
-}
+/*Todo.propTypes = {
+  text: PropTypes.string.isRequired
+}*/
 
 export default Todo

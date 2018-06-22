@@ -1,18 +1,22 @@
 import React from 'react'
-import { connect } from 'react-redux'; // react-redux process
-import { fetchTodoList } from '../actions/todoList' // react-redux process
+import PropTypes from 'prop-types'
 import Todo from './Todo'
+import { fetchTodoList } from '../actions/todoList' // react-redux process
 
 class TodoList extends React.Component {
-  componentDidMount() {
+  constructor( props ) {
+    super( props )
+  }
+
+  componentDidMount = () => {
     console.log( 'TodoList componentDidMount' )
-    this.props.dispatch( fetchTodoList()) // react-redux process
+    this.props.fetchTodoList() // react-redux process
   }
 
   render() {
     const { error, loading, todoList } = this.props
-    console.log( `TodoList.render(): todoList:` )
-    console.log( todoList )
+    console.log( `TodoList.render(): this.props:` )
+    console.log( this.props )
     if ( error ) {
       return <div>{error.message}</div>
     }
@@ -29,13 +33,12 @@ class TodoList extends React.Component {
   }
 }
 
-// Useful for react-redux
-const mapStateToProps = state => {
-  return {
-    todoList: state.todoList.items,
-    loading: state.todoList.loading,
-    error: state.todoList.error
-  }
-}
+/*TodoList.propTypes = {
+  todoList: PropTypes.arrayOf(
+    PropTypes.shape({
+      text: PropTypes.string.isRequired
+    }).isRequired
+  ).isRequired
+}*/
 
-export default connect( mapStateToProps )( TodoList ) // connect() necessary for react-redux
+export default TodoList

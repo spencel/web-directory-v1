@@ -5,12 +5,17 @@ import {
 } from '../actions/todoList'
 
 const initialState = {
-  items: [],
+  todoList: [],
   loading: false,
   error: null
 }
 
-export default function todoList( state = initialState, action ) {
+export default function todoListReducer( state = initialState, action ) {
+  console.log( 'reducers/todoList.js: todoList:' )
+  console.log( 'action:' )
+  console.log( action )
+  console.log( 'state:' )
+  console.log( state )
   switch( action.type ) {
     case FETCH_TODOLIST_BEGIN:
       console.log( 'FETCH_TODOLIST_BEGIN' )
@@ -29,7 +34,7 @@ export default function todoList( state = initialState, action ) {
       return {
         ...state,
         loading: false,
-        items: action.todoList
+        todoList: action.todoList
       }
 
     case FETCH_TODOLIST_FAIL:
@@ -43,7 +48,7 @@ export default function todoList( state = initialState, action ) {
         ...state,
         loading: false,
         error: action.error,
-        items: []
+        todoList: []
       }
 
     default:

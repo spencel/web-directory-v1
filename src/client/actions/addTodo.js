@@ -16,6 +16,8 @@ export const fetchAddTodoFail = error => ({
 })
 
 export function fetchAddTodo( text ) {
+  console.log( 'fetchAddTodo()' )
+  console.log( `text: ${text}`)
   return dispatch => {
     dispatch( fetchAddTodoBegin())
     return fetch(
@@ -26,7 +28,10 @@ export function fetchAddTodo( text ) {
 					'Accept': 'application/json',
 					'Content-Type': 'application/json'
 				},
-				body: 'test todo' }
+        body: JSON.stringify({
+          text: text
+        })
+      }
 		)
       .then( handleErrors )
       .then( response => {
@@ -34,6 +39,7 @@ export function fetchAddTodo( text ) {
         return response.json()
       })
       .then( json => {
+        console.log( 'json:' )
         console.log( json )
         dispatch( fetchAddTodoSuccess( json ))
         return json

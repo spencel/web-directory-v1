@@ -6,10 +6,13 @@ import {
 
 const initialState = {
   loading: false,
-  error: null
+  error: null,
+  text: 'test'
 }
 
-export default function addTodo( state = initialState, action ) {
+export default function addTodoReducer( state = initialState, action ) {
+  console.log( 'addTodo(): actions:' )
+  console.log( action )
   switch( action.type ) {
     case FETCH_ADDTODO_BEGIN:
       console.log( 'FETCH_ADDTODO_BEGIN' )
@@ -25,10 +28,11 @@ export default function addTodo( state = initialState, action ) {
       console.log( 'FETCH_ADDTODO_SUCCESS' )
       // All done: set loading "false".
       // Also, replace the items with the ones from the server
+      console.log( state )
       return {
         ...state,
         loading: false,
-        //item: action.todo
+        text: ''
       }
 
     case FETCH_ADDTODO_FAIL:

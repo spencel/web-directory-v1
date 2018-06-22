@@ -47,7 +47,8 @@ app.get( '/api/fetchTodoList', ( request, response ) => {
 app.post( '/api/fetchAddTodo', jsonParser, ( request, response ) => {
   console.log( '/api/fetchAddTodo' )
   console.log( request.body )
-  mongooseModels.Todo.save(( error, documents ) => {
+  var todo = new mongooseModels.Todo({ text: request.body.text })
+  todo.save(( error, documents ) => {
     if ( error ) return console.error( error )
     response.send( documents )
   })

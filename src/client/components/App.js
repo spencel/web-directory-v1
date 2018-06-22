@@ -1,23 +1,13 @@
 import React from 'react'
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom'
-import AddTodo from './AddTodo'
-import TodoList from './TodoList'
+import AddTodoContainer from '../containers/AddTodoContainer'
+import TodoListContainer from '../containers/TodoListContainer'
 
 
-class App extends React.Component {
-
-  render() {
-    return (
-      <div>
-        <AddTodo />
-        <TodoList />
-      </div>
-    )
-  }
-}
+const App = () => (
+  <div className='App'>
+    <AddTodoContainer />
+    <TodoListContainer />
+  </div>
+)
 
 export default App
