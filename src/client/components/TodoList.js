@@ -9,14 +9,11 @@ class TodoList extends React.Component {
   }
 
   componentDidMount = () => {
-    console.log( 'TodoList componentDidMount' )
     this.props.fetchTodoList() // react-redux process
   }
 
   render() {
     const { error, loading, todoList } = this.props
-    console.log( `TodoList.render(): this.props:` )
-    console.log( this.props )
     if ( error ) {
       return <div>{error.message}</div>
     }

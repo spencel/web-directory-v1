@@ -22,12 +22,9 @@ export function fetchTodoList() {
     return fetch( '/api/fetchTodoList' )
       .then( handleErrors )
       .then( response => {
-        console.log( response )
         return response.json()
       })
       .then( json => {
-        console.log( 'json:' )
-        console.log( json )
         dispatch( fetchTodoListSuccess( json ))
         return json
       })

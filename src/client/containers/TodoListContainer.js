@@ -3,8 +3,6 @@ import { fetchTodoList } from '../actions/todoList'
 import TodoList from '../components/TodoList'
 
 const mapStateToProps = state => {
-	console.log( 'mapStateToProps:' )
-	console.log( state )
 	return {
 		loading: state.todoListReducer.loading,
 		todoList: state.todoListReducer.todoList,

@@ -5,19 +5,22 @@ export const fetchAddTodoBegin = () => ({
   type: FETCH_ADDTODO_BEGIN
 })
 export const FETCH_ADDTODO_SUCCESS = 'FETCH_ADDTODO_SUCCESS'
-export const fetchAddTodoSuccess = todoList => ({
+export const fetchAddTodoSuccess = json => ({
   type: FETCH_ADDTODO_SUCCESS,
-  todoList: todoList
+  json: json
 })
 export const FETCH_ADDTODO_FAIL = 'FETCH_ADDTODO_FAIL'
 export const fetchAddTodoFail = error => ({ 
   type: FETCH_ADDTODO_FAIL,
   error: error
 })
+export const PUSH_TODOLIST = 'PUSH_TODOLIST'
+export const pushTodoList = json => ({ 
+  type: PUSH_TODOLIST,
+  json: json
+})
 
 export function fetchAddTodo( text ) {
-  console.log( 'fetchAddTodo()' )
-  console.log( `text: ${text}`)
   return dispatch => {
     dispatch( fetchAddTodoBegin())
     return fetch(
@@ -35,13 +38,11 @@ export function fetchAddTodo( text ) {
 		)
       .then( handleErrors )
       .then( response => {
-        console.log( response )
         return response.json()
       })
       .then( json => {
-        console.log( 'json:' )
-        console.log( json )
         dispatch( fetchAddTodoSuccess( json ))
+        dispatch( pushTodoList( json ))
         return json
       })
       .catch( error => dispatch( fetchAddTodoFail( error )))

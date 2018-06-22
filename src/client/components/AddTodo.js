@@ -8,13 +8,10 @@ class AddTodo extends React.Component {
   }
 
   componentDidMount() {
-    console.log( 'AddTodo componentDidMount' )
   }
 
   onAddTodoKeyUp = ( event ) => {
 		if ( event.key === 'Enter' ) {
-			console.log( event.key );
-			console.log( JSON.stringify( event.target.value ));
 			var todoText = event.target.value;
 			event.target.value = '';
 			this.props.fetchAddTodo( todoText )
@@ -22,13 +19,10 @@ class AddTodo extends React.Component {
 	}
 
   render() {
-    console.log( 'AppTodo.render()' )
-    console.log( this.props )
     return (
       <input
         className='AddTodo'
         type='text'
-        value={this.props.text}
         placeholder='new'
         onKeyUp={this.onAddTodoKeyUp}
       />
