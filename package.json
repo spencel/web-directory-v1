@@ -13,7 +13,8 @@
     "server": "nodemon  src/server/index.js --exec babel-node",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "babel-node": "babel-node",
-    "mongodbScript": "npm run babel-node -- ./util/mongodbScript.js "
+    "mongodbScript": "npm run babel-node -- ./util/mongodbScript.js ",
+    "discovery": "npm run babel-node -- ./util/discovery.js "
   },
   "author": "Spencer Lank",
   "license": "ISC",
@@ -22,6 +23,8 @@
     "body-parser": "^1.18.3",
     "cross-fetch": "^2.2.1",
     "express": "^4.16.3",
+    "loopback": "^3.20.0",
+    "loopback-connector-mysql": "^5.2.0",
     "mongodb": "^3.0.10",
     "mongoose": "^5.1.6",
     "mysql": "^2.15.0",

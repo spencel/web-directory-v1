@@ -1,0 +1,72 @@
+{
+  "_meta": {
+    "sources": [
+      "./loopback-models"
+    ],
+    "mixins": [
+      "./loopback-mixins"
+    ]
+  },
+  "User": {
+    "dataSource": "db"
+  },
+  "AccessToken": {
+    "dataSource": "db",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "db",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "db",
+    "public": false,
+    "options": {
+      "strictObjectIDCoercion": true
+    }
+  },
+  "Role": {
+    "dataSource": "db",
+    "public": false
+  },
+  "disinfection": {
+    "dataSource": "gwpd-mysql-cleardb",
+    "public": true
+  },
+  "genome_type": {
+    "dataSource": "gwpd-mysql-cleardb",
+    "public": true
+  },
+  "gram_stain_group": {
+    "dataSource": "gwpd-mysql-cleardb",
+    "public": true
+  },
+  "organism": {
+    "dataSource": "gwpd-mysql-cleardb",
+    "public": true
+  },
+  "organism_common": {
+    "dataSource": "gwpd-mysql-cleardb",
+    "public": true
+  },
+  "organism_family": {
+    "dataSource": "gwpd-mysql-cleardb",
+    "public": true
+  },
+  "organism_genus": {
+    "dataSource": "gwpd-mysql-cleardb",
+    "public": true
+  },
+  "organism_species": {
+    "dataSource": "gwpd-mysql-cleardb",
+    "public": true
+  },
+  "organism_subfamily": {
+    "dataSource": "gwpd-mysql-cleardb",
+    "public": true
+  },
+  "organism_type": {
+    "dataSource": "gwpd-mysql-cleardb",
+    "public": true
+  }
+}

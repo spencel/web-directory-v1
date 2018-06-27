@@ -1,0 +1,13 @@
+{
+  "gwpd-mysql-cleardb": {
+    "host": "us-cdbr-iron-east-04.cleardb.net",
+    "port": 3306,
+    "url": "mysql://bf625d1cf3ab45:6d68558b@us-cdbr-iron-east-04.cleardb.net/heroku_b2cf77a96af7a57",
+    "database": "heroku_b2cf77a96af7a57",
+    "password": "6d68558b",
+    "name": "gwpd-mysql-cleardb",
+    "user": "bf625d1cf3ab45",
+    "connector": "mysql",
+    "connectionLimit": 1
+  }
+}
