@@ -49,7 +49,7 @@ async function discover() {
 
   await mkdirp( modelsPath )
 
-  ds.connect( ( error, db ) => {
+  ds.connect(( error, db ) => {
     if ( error ) throw error
         
   })

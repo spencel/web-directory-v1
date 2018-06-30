@@ -6,6 +6,7 @@ import thunk from 'redux-thunk'
 import rootReducer from './reducers/rootReducer'
 import App from './components/App'
 import 'babel-polyfill'
+import './index.html'
 
 const store = createStore( 
   rootReducer,
@@ -16,5 +17,5 @@ render(
   <Provider store={store}>
     <App />
   </Provider>,
-  document.getElementById( 'webDirectoryApp' )
+  document.getElementById( 'root' )
 )

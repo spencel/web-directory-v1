@@ -9,7 +9,7 @@
     "react/jsx-filename-extension": "on",
     "linebreak-style": ["error", "windows"],
     "quotes": ["error", "single", { "allowTemplateLiterals": true }],
-    "space-in-parens": ["error","always",{"exceptions":["{}","()"]}]
+    "space-in-parens": ["error","always",{"exceptions":["{}","()","[]"]}]
   },
   "parser": "babel-eslint",
   "parserOptions": {
